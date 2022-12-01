@@ -44,6 +44,7 @@ export class DashboardComponent implements OnInit {
   }
 
 
+
   selectMovie(movieId: String) {
     let selectedMovie = this.movies.filter(item => item._id == movieId);
     if (selectedMovie.length > 0) {
@@ -51,7 +52,7 @@ export class DashboardComponent implements OnInit {
       console.log('Movie found');
       // openSheet();
       let sheetRef = this.bottomSheet.open(BottomSheetComponent, {
-        disableClose: false, data: {movie: this.popUpMovie},
+        disableClose: false, data: { movie: this.popUpMovie },
       });
     }
     else {

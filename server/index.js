@@ -26,15 +26,14 @@ const conn = mongoose.createConnection(process.env.MONGO_URI, (err) => {
 const Movie = conn.model("movies", movieSchema);
 const port = process.env.PORT || 7000;
 
-app.get("/", function (req, res) {
+app.get("/api/v1/movies", function (req, res) {
   Movie.find({}, function (err, docs) {
-    // docs.forEach
     // console.log(docs);
     res.send(docs);
   });
 });
 
-app.get("/:movieid", function (req, res) {
+app.get("/api/v1/movie/:movieid", function (req, res) {
   Movie.find({
     "_id": mongo.ObjectId(req.params.movieid),
   }, function (err, docs) {
@@ -42,14 +41,6 @@ app.get("/:movieid", function (req, res) {
     res.send(docs);
   });
 });
-
-
-// app.get("/addMovie", function(req, res) {
-//     Movie.save(new Movie({
-//         title: ""
-//     }))
-// })
-
 
 app.listen(port, () => {
   console.log(`Now listening on port ${port}`);
